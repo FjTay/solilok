@@ -40,6 +40,7 @@ function App() {
           />
           <Route path="account/*" element={<Account />} />
           {/* ///////// */}
+          <Route path="/" element={<Home />} />
           <Route path="makeOffer/" element={<MakeOffer />} />
           <Route path="offers/" element={<Offers />} />
           <Route path="/" element={<div>Hello user</div>} />
