@@ -1,12 +1,14 @@
 import { BrowserRouter as useParams, Route ,Link, Routes, useNavigate} from "react-router-dom";
 import { useState } from 'react';
+
+import Home from "./pages/Home";
 import { ConnexionContextProvider } from "./contexts/connexionContext";
 import SignIn from './SignIn';
 import Comments from './Comments';
 import Confirmation from './Confirmation';
 import Account from './Account';
 import Connexion from './Connexion';
-import SignInAsCompany from './SignInAsCompany'
+import SignInAsCompany from './SignInAsCompany';
 
 function App() {
 
@@ -25,7 +27,7 @@ function App() {
                 element={<Confirmation />}
               />
               <Route path="account/*" element={<Account />} />
-              <Route path="/" element={<div>Hello user</div>} />
+              <Route path="/" element={<Home />} />
           </Routes>
       </ConnexionContextProvider>
     </div>
