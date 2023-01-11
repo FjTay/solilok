@@ -19,6 +19,9 @@ import RentCreator from "./pages/RentCreator";
 import RentNeed from "./pages/rentNeed";
 import MakeOffer from "./MakeOffer";
 import Offers from "./Offers";
+import Reserver from "./pages/Reserver";
+
+import "./App.css";
 
 function App() {
   const navigate = useNavigate();
@@ -34,6 +37,7 @@ function App() {
           <Route path="account/connexion" element={<Connexion />} />
           <Route path="business/" element={<SignInAsCompany />} />
           <Route path="user/" element={<SignIn />} />
+              <Route path="reserver/" element={<Reserver />} />
           <Route
             path="account/confirmation/:action"
             element={<Confirmation />}

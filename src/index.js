@@ -4,6 +4,8 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { ConnexionContextProvider } from './contexts/connexionContext';
 
+import "./index.css";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ConnexionContextProvider>
