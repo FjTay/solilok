@@ -7,6 +7,8 @@ import Confirmation from './Confirmation';
 import Account from './Account';
 import Connexion from './Connexion';
 import SignInAsCompany from './SignInAsCompany'
+import MakeOffer from "./MakeOffer";
+import Offers from "./Offers";
 
 function App() {
 
@@ -14,6 +16,8 @@ function App() {
 
   return (
     <div className="App">
+    <Link to="/makeOffer">make Offer</Link>
+    <Link to="/offers">see Offers</Link>
     <ConnexionContextProvider>
           <Routes>
               <Route path="planets/:planet/comments" element={<Comments />} />
@@ -25,6 +29,8 @@ function App() {
                 element={<Confirmation />}
               />
               <Route path="account/*" element={<Account />} />
+              <Route path="makeOffer/" element={<MakeOffer />} />
+              <Route path="offers/" element={<Offers />} />
               <Route path="/" element={<div>Hello user</div>} />
           </Routes>
       </ConnexionContextProvider>

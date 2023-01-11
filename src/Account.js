@@ -32,12 +32,13 @@ function Account() {
   };
 
   useEffect(() => {
-    auth.currentUser &&
+    auth.currentUser && (
       FormSubmitter.getUserData(
         userInfo.auth.currentUser.uid,
         userInfo,
         setUserInfo
-      );
+      )
+    )
   }, [auth]);
 
   return (

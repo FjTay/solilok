@@ -60,7 +60,10 @@ const FormSubmitter = {
   getUserData: async (id, data, setData) => {
     const docref = doc(db, "users", id);
     await getDoc(docref).then((docu) => {
-      setData({ ...data, info: docu.data() });
+      const {auth} = data
+      console.log(auth)
+      console.log(docu.data())
+      setData({auth : auth, info: docu.data() });
     });
   },
   updateUserData: async (id, fields, navigate) => {
