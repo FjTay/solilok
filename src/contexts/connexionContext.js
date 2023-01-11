@@ -8,6 +8,7 @@ export function ConnexionContextProvider({ children }) {
     info: {}});
 
   return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <ConnexionContext.Provider value={{ userInfo, setUserInfo }}>
       {children}
     </ConnexionContext.Provider>

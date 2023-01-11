@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { ConnexionContextProvider } from './connexionContext';
+import { BrowserRouter } from 'react-router-dom';
+import { ConnexionContextProvider } from './contexts/connexionContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <ConnexionContextProvider>
+  <ConnexionContextProvider>
+    <BrowserRouter>
       <App />
-    </ConnexionContextProvider>
-  </React.StrictMode>
+    </BrowserRouter>
+  </ConnexionContextProvider>
 );

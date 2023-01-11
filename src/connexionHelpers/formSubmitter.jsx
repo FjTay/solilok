@@ -18,7 +18,8 @@ const FormSubmitter = {
     registerPassword,
     setSignInData,
     signInData,
-    navigate
+    navigate,
+    isCompany
   ) => {
     try {
       const user = await createUserWithEmailAndPassword(
@@ -26,7 +27,8 @@ const FormSubmitter = {
         registerMail,
         registerPassword
       );
-      FormCreator.createUser(user.user.uid, signInData);
+      if(isCompany) FormCreator.createCompany(user.user.uid, signInData)
+      else FormCreator.createUser(user.user.uid, signInData);
       navigate("/account/");
     } catch (error) {
       const newField = { ...signInData.mail };

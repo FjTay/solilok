@@ -99,6 +99,84 @@ const FormFields = {
     name: "commentArea",
     label: "Leave a comment",
   },
+  street : {
+    value: false,
+    isValid: false,
+    errorMsg:
+      "Your address should have between 3 and 25 characters, no accents and no special characters",
+    isRequired: true,
+    displayMsg: "",
+    regexToTest: /^[a-zA-Z0-9 ]{3,25}$/,
+    touched: false,
+    name: "street",
+    label: "Street *",
+    type: "text"
+  },
+  companyName : {
+    value: false,
+    isValid: false,
+    errorMsg:
+      "Your company name should have between 1 and 25 characters, no accents and no special characters",
+    isRequired: true,
+    displayMsg: "",
+    regexToTest: /^[a-zA-Z0-9 ./+-]{1,25}$/,
+    touched: false,
+    name: "companyName",
+    label: "Company Name *",
+    type: "companyName"
+  },
+  city : {
+    value: false,
+    isValid: false,
+    errorMsg:
+      "Your city should have between 3 and 25 characters, no accents, no numbers and no special characters",
+    isRequired: true,
+    displayMsg: "",
+    regexToTest: /^[a-zA-Z]{3,25}$/,
+    touched: false,
+    name: "city",
+    label: "City *",
+    type: "text"
+  },
+  country : {
+    value: false,
+    isValid: false,
+    errorMsg:
+      "Your country should have between 3 and 25 characters, no accents, no numbers and no special characters",
+    isRequired: true,
+    displayMsg: "",
+    regexToTest: /^[a-zA-Z]{3,25}$/,
+    touched: false,
+    name: "country",
+    label: "Country *",
+    type: "country"
+  },
+  postcode: {
+    value: false,
+    isValid: false,
+    errorMsg:
+      "Your post code should have between 3 and 8 digits",
+    isRequired: true,
+    displayMsg: "",
+    regexToTest: /^[0-9]{3,8}$/,
+    touched: false,
+    name: "postcode",
+    label: "Post Code *",
+    type: "number"
+  },
+  siret: {
+    value: false,
+    isValid: false,
+    errorMsg:
+      "Your post code should have between 3 and 8 digits",
+    isRequired: true,
+    displayMsg: "",
+    regexToTest: /^[0-9 -.]{3,50}$/,
+    touched: false,
+    name: "siret",
+    label: "SIRET *",
+    type: "siret"
+  },
   connexionError: false,
 };
 
