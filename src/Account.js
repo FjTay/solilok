@@ -6,6 +6,7 @@ import { auth } from "./firebase-config";
 import FormFields from "./connexionHelpers/formFields";
 import FormTextInputList from "./FormTextInputList";
 import FormHelpers from "./connexionHelpers/formHelpers";
+import Navbar from "./components/Layout/Navbar";
 
 function Account() {
   const navigate = useNavigate();
@@ -32,21 +33,27 @@ function Account() {
   };
 
   useEffect(() => {
-    auth.currentUser && (
+    auth.currentUser &&
       FormSubmitter.getUserData(
         userInfo.auth.currentUser.uid,
         userInfo,
         setUserInfo
-      )
-    )
+      );
   }, [auth]);
 
   return (
-    // rajout d'une classe 
+    // rajout d'une classe
+
     <div className="page connexion-page">
       {userInfo.info?.city && auth.currentUser && !params["*"] ? (
         <>
-          <h3>{`Hi ${userInfo.info?.siret ? userInfo.info.companyName : userInfo.info.surname}, welcome.`} </h3>
+          <h3>
+            {`Hi ${
+              userInfo.info?.siret
+                ? userInfo.info.companyName
+                : userInfo.info.surname
+            }, welcome.`}{" "}
+          </h3>
           <button type="button" onClick={() => handleLogout()}>
             Log out
           </button>
@@ -75,7 +82,9 @@ function Account() {
             <button type="button">Sign in</button>
           </Link>
         </>
-      ) : ""}
+      ) : (
+        ""
+      )}
       {params["*"] === "accountData/" && (
         <>
           <FormTextInputList
