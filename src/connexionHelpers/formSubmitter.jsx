@@ -61,8 +61,6 @@ const FormSubmitter = {
     const docref = doc(db, "users", id);
     await getDoc(docref).then((docu) => {
       const {auth} = data
-      console.log(auth)
-      console.log(docu.data())
       setData({auth : auth, info: docu.data() });
     });
   },
