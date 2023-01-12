@@ -2,15 +2,19 @@ import { Link } from "react-router-dom";
 
 function Vehicule() {
   return (
-    <div className="car-sector">
-      <h1>Vehicule</h1>
+    <div className="box">
+      <h1>Vehicle</h1>
       <div className="container">
-        <button type="button">
-          <Link to="/RentNeed">reserver un vehicule</Link>
-        </button>
-        <button type="button">
-          <Link to="/RentCreator">louer mon vehicule</Link>
-        </button>
+        <Link to="reserver/">
+          <button type="button" className="btn-01">
+            Booking
+          </button>
+        </Link>
+        <Link to="/RentCreator">
+          <button type="button" className="btn-01">
+            Hide out car
+          </button>
+        </Link>
       </div>
     </div>
   );

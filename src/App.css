@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900");
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  /* background-color: var(--medium-background); */
+  font-size: var(--textM);
+  overscroll-behavior: none;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  animation: bg-slider 20s linear infinite;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: 1s ease;
+  transition-delay: 0.4s;
+  object-fit: cover;
+  background-attachment: fixed;
+  color: red;
+}
+
+@keyframes bg-slider {
+  0% {
+    background-image: url("/public/image/background/VehicleBG1.jpg");
+  }
+  25% {
+    background-image: url("/public/image/background/VehicleBG8.jpg");
+  }
+  50% {
+    background-image: url("/public/image/background/VehicleBG3.jpg");
+  }
+  75% {
+    background-image: url("/public/image/background/VehicleBG7.jpg");
+  }
+  100% {
+    background-image: url("/public/image/background/VehicleBG2.jpg");
+  }
+}
+
+@media (min-width: 600px) {
+  @keyframes bg-slider {
+    0% {
+      background-image: url("/public/image/background/VehicleBG1big.jpg");
+    }
+    25% {
+      background-image: url("/public/image/background/VehicleBG2big.jpg");
+    }
+    50% {
+      background-image: url("/public/image/background/VehicleBG3big.jpg");
+    }
+    75% {
+      background-image: url("/public/image/background/VehicleBG4big.jpg");
+    }
+    100% {
+      background-image: url("/public/image/background/VehicleBG5big.jpg");
+    }
+  }
+}

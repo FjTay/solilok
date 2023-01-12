@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 
 function Borne() {
   return (
-    <div className="borne-sector">
-      <h1>Trouver une borne</h1>
+    <div className="box">
+      <h1>Charge Station</h1>
       <div className="container">
-        <button type="button">
-          <Link to="/SearchBorn">Je cherche une borne</Link>
+        <Link to="/SearchBorn">
+          <button type="button" className="btn-01">
+            Booking
+          </button>
+        </Link>
+        <button type="button" className="btn-01">
+          Proposal
         </button>
-        <button type="button">Je loue une borne</button>
       </div>
     </div>
   );
