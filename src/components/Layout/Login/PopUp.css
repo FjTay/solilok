@@ -1,17 +1,15 @@
 .popup-body {
   position: fixed;
-  top: 50%;
-  left: 40%;
+  top: 60%;
+  left: 35%;
   transform: translate(-50%, -50%);
   width: 100%;
-  height: 100%;
+  height: 91%;
   text-align: center;
   margin: auto;
   margin-left: 15%;
-  border-radius: 15px;
   color: black;
   background-color: white;
-  box-shadow: var(--medium-background) 0px 5px 15px;
 }
 
 .popup-container .popup-body {
@@ -23,12 +21,6 @@
     transform: scale(10) translateY(50%);
     opacity: 0;
   }
-}
-
-.title {
-  margin-top: 3%;
-  font-size: 30px;
-  margin: 20px;
 }
 
 .close__btn {

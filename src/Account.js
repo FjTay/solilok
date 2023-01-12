@@ -8,6 +8,8 @@ import FormTextInputList from "./FormTextInputList";
 import FormHelpers from "./connexionHelpers/formHelpers";
 import Navbar from "./components/Layout/Navbar";
 
+import "./Account.css";
+
 function Account() {
   const navigate = useNavigate();
   const params = useParams();
@@ -64,12 +66,14 @@ function Account() {
             Delete account
           </button>
           <Link to="addCar/">
-            <button type="button">Want to rent a car ? Add one to your profile</button>
+            <button type="button">
+              Want to rent a car ? Add one to your profile
+            </button>
           </Link>
         </>
       ) : !userInfo.info.surname && auth.currentUser ? (
         <>
-          <h4>LOADING FROM IMPERIAL DATABASE</h4>
+          <h4>LOADING FROM DATABASE</h4>
         </>
       ) : !params["*"] ? (
         <>

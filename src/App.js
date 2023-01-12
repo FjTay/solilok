@@ -16,7 +16,8 @@ import SignInAsCompany from "./SignInAsCompany";
 import MakeOffer from "./MakeOffer";
 import Offers from "./Offers";
 import Reserver from "./pages/Reserver";
-import MapView from "./pages/MapView";
+import MapView from "./pages/MapView.jsx";
+import Navbar from "./components/Layout/Navbar";
 
 import "./App.css";
 import AddCar from "./AddCar";
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <ConnexionContextProvider>
         <Routes>
           {/* ///////// */}

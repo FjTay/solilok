@@ -1,15 +1,15 @@
 import { useState, useRef, useContext } from "react";
 import PopUp from "./Login/PopUp";
 import Logo from "./Logo";
-import ConnexionContext from "../../contexts/connexionContext";
+// import ConnexionContext from "../../contexts/connexionContext";
 
 import "./Navbar.css";
 
 function Navbar() {
   const ref = useRef();
   const [active, setActive] = useState(false);
-  const { userInfo } = useContext(ConnexionContext);
-  console.log(userInfo);
+  // const { userInfo } = useContext(ConnexionContext);
+  // console.log(userInfo);
 
   const handleClick = (e) => {
     setActive(!active);
