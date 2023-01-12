@@ -21,6 +21,7 @@ const MakeOffer = () => {
   const [cars, setCars] = useState([]);
   const [currentCar, setCurrentCar] = useState([]);
   const [date, setDate] = useState({ start: false, end: false, today: false });
+  console.log(userInfo);
 
   const getCars = async () => {
     const carsQuery = collection(db, "cars");
@@ -70,11 +71,8 @@ const MakeOffer = () => {
 
   return (
     <>
-      <div>
-        <Navbar />
-      </div>
       <div className="page page-comments">
-        {cars.length && (
+        {cars?.length && (
           <>
             <div>My Cars</div>
             {cars.map((car) => (

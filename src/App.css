@@ -19,4 +19,5 @@ body {
   transition: 1s ease;
   transition-delay: 0.4s;
   object-fit: cover;
+  color: red;
 }
