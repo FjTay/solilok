@@ -13,11 +13,10 @@ import Confirmation from "./Confirmation";
 import Account from "./Account";
 import Connexion from "./Connexion";
 import SignInAsCompany from "./SignInAsCompany";
-import RentCreator from "./pages/RentCreator";
-import RentNeed from "./pages/rentNeed";
 import MakeOffer from "./MakeOffer";
 import Offers from "./Offers";
 import Reserver from "./pages/Reserver";
+import MapView from "./pages/MapView";
 
 import "./App.css";
 import AddCar from "./AddCar";
@@ -27,8 +26,6 @@ function App() {
 
   return (
     <div className="App">
-      <Link to="/makeOffer">make Offer</Link>
-      <Link to="/offers">see Offers</Link>
       <ConnexionContextProvider>
         <Routes>
           {/* ///////// */}
@@ -36,7 +33,7 @@ function App() {
           <Route path="account/connexion" element={<Connexion />} />
           <Route path="business/" element={<SignInAsCompany />} />
           <Route path="user/" element={<SignIn />} />
-              <Route path="reserver/" element={<Reserver />} />
+          <Route path="reserver/" element={<Reserver />} />
           <Route
             path="account/confirmation/:action"
             element={<Confirmation />}
@@ -48,10 +45,10 @@ function App() {
           <Route path="account/addCar/" element={<AddCar />} />
           <Route path="offers/" element={<Offers />} />
           <Route path="/" element={<div>Hello user</div>} />
-          <Route path="/RentCreator" element={<RentCreator />} />
-          <Route path="/RentNeed" element={<RentNeed />} />
+          {/* <Route path="/RentCreator" element={<RentCreator />} /> */}
           <Route path="RentCreator/business/" element={<SignInAsCompany />} />
           <Route path="RentCreator/user/" element={<SignIn />} />
+          <Route path="/MapView" element={<MapView />} />
         </Routes>
       </ConnexionContextProvider>
     </div>

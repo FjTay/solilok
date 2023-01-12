@@ -1,18 +1,28 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
-import { doc, getDoc, arrayUnion, setDoc, addDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  arrayUnion,
+  setDoc,
+  addDoc,
+  getDocs,
+  collection,
+  query,
+  where,
+  updateDoc,
+} from "firebase/firestore";
 import ConnexionContext from "./contexts/connexionContext";
 import { db } from "./firebase-config";
-import ActionConfirmation from "./ActionConfirmation";
 
 const MakeOffer = () => {
     const { userInfo, setUserInfo } = useContext(ConnexionContext);
     const [cars, setCars] = useState([]);
     const [currentCar, setCurrentCar ]= useState([])
     const [date, setDate] = useState({start: false, end: false, today: false})
+    console.log(userInfo)
   
     const getCars = async () => {
-        console.log("je fetch les cars !!!!!!!!!!!!!!!!!!!!!")
         const carsQuery = collection(db, "cars")
         const cars = query(carsQuery, where("user_id", "==", userInfo.auth.currentUser.uid))
         const querySnapshot = await getDocs(cars);
@@ -22,7 +32,7 @@ const MakeOffer = () => {
     };
 
     useEffect(() => {
-        if (userInfo.auth.currentUser) getCars();
+        if (userInfo.auth.currentUser) getCars()
         const date = new Date();
         let day = date.getDate();
         let month = date.getMonth() + 1;
@@ -33,7 +43,6 @@ const MakeOffer = () => {
     }, []);
 
     const pushOffer = async () => {
-        console.log(userInfo.info)
         const userDocRef = doc(db, "users", userInfo.auth.currentUser.uid);
         const newOffer = {
             car: currentCar[0],
@@ -54,8 +63,6 @@ const MakeOffer = () => {
             ).then(res => setUserInfo({...userInfo, currentOffers : [...userInfo.currentOffers, newOffer]}))
         })
     };
-
-    console.log(userInfo)
 
     const checkAvailability = () => {
         if(!userInfo.currentOffers.length) {
@@ -82,7 +89,8 @@ const MakeOffer = () => {
     useEffect(() => {
         currentCar.length && console.log(userInfo.currentOffers.find(offer => offer.car.carID === currentCar[0].carID))
     }, [currentCar])
-
+    
+    
     return (
         <>
         {userInfo.auth.currentUser ? 
