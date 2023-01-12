@@ -1,9 +1,9 @@
-import React from 'react'
+import "./Borne.css";
 
 function Borne() {
   return (
-    <div className='borne-sector'>
-            <h1>Trouver une borne</h1>
+    <div className='box'>
+            <h1>Borne</h1>
             <div className='container'>
                 <button type='button'>
                     Je cherche une borne

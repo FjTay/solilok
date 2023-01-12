@@ -6,10 +6,16 @@ body {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
-  background-color: var(--medium-background);
+  /* background-color: var(--medium-background); */
   font-size: var(--textM);
   overscroll-behavior: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: bg-slider 20s linear infinite;
+  background-size: cover;
+  background-position: center;
+  transition:1s ease;
+  transition-delay:.4s;
+  object-fit: cover;
 }

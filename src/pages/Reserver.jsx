@@ -4,8 +4,6 @@ import "./Reserver.css";
 function Reserver() {
   return (
     <div class="blanco">
-        <div class="amarillo"></div>
-        <div class="naranja"></div>
         <h1>Search for a rental car</h1>
         <form action="">
             <label>Pick up location</label>
@@ -31,8 +29,6 @@ function Reserver() {
             <label>The driver's age between 30 and 65?  <i class="fa-solid fa-circle-info"></i></label>
         </div>
         <input type="submit" value="Search" />
-
-        
     </form>
     </div>
   )
