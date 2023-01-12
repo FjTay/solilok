@@ -16,7 +16,7 @@ import SignInAsCompany from "./SignInAsCompany";
 import MakeOffer from "./MakeOffer";
 import Offers from "./Offers";
 import Reserver from "./pages/Reserver";
-import SearchBorn from "./pages/SearchBorn";
+import MapView from "./pages/MapView";
 
 import "./App.css";
 
@@ -46,7 +46,7 @@ function App() {
           {/* <Route path="/RentCreator" element={<RentCreator />} /> */}
           <Route path="RentCreator/business/" element={<SignInAsCompany />} />
           <Route path="RentCreator/user/" element={<SignIn />} />
-          <Route path="/SearchBorn" element={<SearchBorn />} />
+          <Route path="/MapView" element={<MapView />} />
         </Routes>
       </ConnexionContextProvider>
     </div>

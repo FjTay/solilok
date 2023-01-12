@@ -6,7 +6,7 @@ function Borne() {
     <div className="box">
       <h1>Charge Station</h1>
       <div className="container">
-        <Link to="/SearchBorn">
+        <Link to="/MapView">
           <button type="button" className="btn-01">
             Booking
           </button>

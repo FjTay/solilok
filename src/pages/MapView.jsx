@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import "./MapView.css";
 
 export default function SearchBorn() {
   const { isLoaded } = useLoadScript({
