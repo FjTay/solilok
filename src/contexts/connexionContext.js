@@ -9,21 +9,19 @@ export function ConnexionContextProvider({ children }) {
     info: {}});
 
     useEffect(() => {
+      if(!userInfo.currentOffers && userInfo.auth.currentUser) {
       const getOffers = async () => {
-        if(!userInfo.currentOffers) {
-          console.log(userInfo.auth.currentUser.uid)
-          const q = query(collection(db, "offers"), where("user_id", "==", userInfo.auth.currentUser.uid));
+          const q = query(collection(db, "offers"), where("user_id", "==", userInfo.auth.currentUser?.uid));
           const querySnapshot = await getDocs(q);
           const filteredOffers = []
           querySnapshot.forEach((doc) => {
             filteredOffers.push(doc.data())
           });
-          console.log(filteredOffers)
           setUserInfo({...userInfo, currentOffers : filteredOffers})
         }
+        console.log("fetch des offres users!!")
+        getOffers()
       }
-      getOffers()
-      console.log("hello")
     }, [userInfo])
 
   return (
