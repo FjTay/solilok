@@ -10,9 +10,9 @@ function Vehicule() {
             Booking
           </button>
         </Link>
-        <Link to="/RentCreator">
+        <Link to="/makeOffer">
           <button type="button" className="btn-01">
-            Hide out car
+            Propose car
           </button>
         </Link>
       </div>

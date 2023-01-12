@@ -65,7 +65,7 @@ const MakeOffer = () => {
     };
 
     const checkAvailability = () => {
-        if(!userInfo.currentOffers.length) {
+        if(!userInfo.currentOffers?.length) {
             console.log("je suis là")
             return true
         }
@@ -85,17 +85,12 @@ const MakeOffer = () => {
             } else return false
         } else return false
     }
-
-    useEffect(() => {
-        currentCar.length && console.log(userInfo.currentOffers.find(offer => offer.car.carID === currentCar[0].carID))
-    }, [currentCar])
-    
-    
+      
     return (
         <>
         {userInfo.auth.currentUser ? 
-        <>
-            <div className="page page-comments">
+        <div className="blanco">
+            <div className="makeOffer">
                 {cars?.length && 
                     <>
                     <div>My Cars</div>
@@ -108,7 +103,9 @@ const MakeOffer = () => {
                 }
             </div>
             <div>
-                {currentCar.length ? `You have chosen : ${currentCar[0].model} - ${currentCar[0].brand}` :""}
+                {currentCar.length ? 
+                <>
+                <div>You have chosen : </div><div>{currentCar[0].model} - {currentCar[0].brand}</div> </>:""}
             </div>
             <label for="start">Start date:</label>
             <input type="date" id="start" name="trip-start"
@@ -130,7 +127,7 @@ const MakeOffer = () => {
             </input>
             {currentCar.length ? checkAvailability() ? "Available for this date!" : "Not available for these dates" : ""}
             <button disabled={!currentCar.length ? true : !checkAvailability()? true : false} onClick={() => pushOffer()}>POST MY OFFER</button>
-            </>
+            </div>
        : 
        <>
       <div>YOU NEED TO SIGN IN TO MAKE AN OFFER</div>

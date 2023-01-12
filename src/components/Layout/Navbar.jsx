@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router";
 import Logo from "./Logo";
 
 import "./Navbar.css";
@@ -6,6 +7,7 @@ import "./Navbar.css";
 function Navbar() {
   const ref = useRef();
   const [active, setActive] = useState(false);
+  const navigate = useNavigate()
 
   const handleClick = (e) => {
     setActive(!active);
@@ -14,7 +16,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="nav-bar">
+    <nav className="nav-bar" >
       <div className="nav-btn">
         <button
           ref={ref}
