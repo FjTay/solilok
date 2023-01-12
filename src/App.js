@@ -5,8 +5,6 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import { useState } from "react";
-
 import Home from "./pages/Home";
 import { ConnexionContextProvider } from "./contexts/connexionContext";
 import SignIn from "./SignIn";
