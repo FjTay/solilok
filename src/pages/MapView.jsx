@@ -20,3 +20,5 @@ function Map() {
     ></GoogleMap>
   );
 }
+
+export default MapView;
