@@ -16,8 +16,10 @@ import SignInAsCompany from "./SignInAsCompany";
 import MakeOffer from "./MakeOffer";
 import Offers from "./Offers";
 import Reserver from "./pages/Reserver";
+import MapView from "./pages/MapView";
 
 import "./App.css";
+import AddCar from "./AddCar";
 
 function App() {
   const navigate = useNavigate();
@@ -40,11 +42,13 @@ function App() {
           {/* ///////// */}
           <Route path="/" element={<Home />} />
           <Route path="makeOffer/" element={<MakeOffer />} />
+          <Route path="account/addCar/" element={<AddCar />} />
           <Route path="offers/" element={<Offers />} />
           <Route path="/" element={<div>Hello user</div>} />
           {/* <Route path="/RentCreator" element={<RentCreator />} /> */}
           <Route path="RentCreator/business/" element={<SignInAsCompany />} />
           <Route path="RentCreator/user/" element={<SignIn />} />
+          <Route path="/MapView" element={<MapView />} />
         </Routes>
       </ConnexionContextProvider>
     </div>
