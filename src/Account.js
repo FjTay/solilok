@@ -56,6 +56,9 @@ function Account() {
           <button type="button" onClick={() => handleDeleteAccount()}>
             Delete account
           </button>
+          <Link to="addCar/">
+            <button type="button">Want to rent a car ? Add one to your profile</button>
+          </Link>
         </>
       ) : !userInfo.info.surname && auth.currentUser ? (
         <>
