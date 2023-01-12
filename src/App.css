@@ -15,7 +15,8 @@ body {
   animation: bg-slider 20s linear infinite;
   background-size: cover;
   background-position: center;
-  transition:1s ease;
-  transition-delay:.4s;
+  background-repeat: no-repeat;
+  transition: 1s ease;
+  transition-delay: 0.4s;
   object-fit: cover;
 }

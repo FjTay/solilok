@@ -13,8 +13,6 @@ import Confirmation from "./Confirmation";
 import Account from "./Account";
 import Connexion from "./Connexion";
 import SignInAsCompany from "./SignInAsCompany";
-import RentCreator from "./pages/RentCreator";
-import RentNeed from "./pages/rentNeed";
 import MakeOffer from "./MakeOffer";
 import Offers from "./Offers";
 import Reserver from "./pages/Reserver";
@@ -35,7 +33,7 @@ function App() {
           <Route path="account/connexion" element={<Connexion />} />
           <Route path="business/" element={<SignInAsCompany />} />
           <Route path="user/" element={<SignIn />} />
-              <Route path="reserver/" element={<Reserver />} />
+          <Route path="reserver/" element={<Reserver />} />
           <Route
             path="account/confirmation/:action"
             element={<Confirmation />}
@@ -46,8 +44,7 @@ function App() {
           <Route path="makeOffer/" element={<MakeOffer />} />
           <Route path="offers/" element={<Offers />} />
           <Route path="/" element={<div>Hello user</div>} />
-          <Route path="/RentCreator" element={<RentCreator />} />
-          <Route path="/RentNeed" element={<RentNeed />} />
+          {/* <Route path="/RentCreator" element={<RentCreator />} /> */}
           <Route path="RentCreator/business/" element={<SignInAsCompany />} />
           <Route path="RentCreator/user/" element={<SignIn />} />
         </Routes>
