@@ -1,15 +1,14 @@
-import "./Borne.css";
 
 function Borne() {
   return (
     <div className='box'>
-            <h1>Borne</h1>
-            <div className='container'>
-                <button type='button'>
-                    Je cherche une borne
+            <h1>Charge Station</h1>
+            <div className="container">
+                <button type="button" className="btn-01">
+                    Book a charge
                 </button>
-                <button type='button'>
-                    Je loue une borne
+                <button type="button" className="btn-01">
+                    Propose a charge
                 </button>
             </div>
     </div>
