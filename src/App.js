@@ -17,14 +17,17 @@ import RentCreator from "./pages/RentCreator";
 import RentNeed from "./pages/rentNeed";
 import MakeOffer from "./MakeOffer";
 import Offers from "./Offers";
+import Reserver from "./pages/Reserver";
+
+import "./App.css";
 
 function App() {
   const navigate = useNavigate();
 
   return (
     <div className="App">
-      <Link to="/makeOffer">make Offer</Link>
-      <Link to="/offers">see Offers</Link>
+      {/* <Link to="/makeOffer">make Offer</Link>
+      <Link to="/offers">see Offers</Link> */}
       <ConnexionContextProvider>
         <Routes>
           {/* ///////// */}
@@ -32,6 +35,7 @@ function App() {
           <Route path="account/connexion" element={<Connexion />} />
           <Route path="business/" element={<SignInAsCompany />} />
           <Route path="user/" element={<SignIn />} />
+              <Route path="reserver/" element={<Reserver />} />
           <Route
             path="account/confirmation/:action"
             element={<Confirmation />}
