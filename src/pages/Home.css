@@ -1,78 +1,75 @@
 .home {
-    height: 100vh;
-    position: relative;
-	overflow: hidden;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .box {
-    position: relative;
-    width: 300px;
-    height: 150px;
-    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
-    border-radius:15px;
-    margin:30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-top:1px solid rgba(255,255,255,0.5);
-    border-left:1px solid rgba(255,255,255,0.5);
-    backdrop-filter: blur(10px);
-    transform: perspective(800px)
+  position: relative;
+  width: 300px;
+  height: 150px;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  transform: perspective(800px);
 }
 
 .box h1 {
-    color: var(--light-color);
-    font-size: var(--text-L);
-    margin-bottom: 1rem;
+  color: var(--light-color);
+  font-size: var(--text-L);
+  margin-bottom: 1rem;
 }
 
-.container{
-    text-decoration: none;
+.container {
+  text-decoration: none;
 }
 
 .container button {
-    cursor: pointer;
-    text-decoration: none;
-    color: var(--light-color);
-    border-radius: 8px;
-    padding: .1em .6em;
-    font-weight: bold;  
-    border: none;
-    height: 3rem;
-    width: 8rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--light-color);
+  border-radius: 8px;
+  padding: 0.1em 0.6em;
+  font-weight: bold;
+  border: none;
+  height: 3rem;
+  width: 8rem;
 }
 
+.btn-01 {
+  --c: #975b1f; /* the color*/
 
-.btn-01{
-    --c:  #1b98e0; /* the color*/
-    
-    box-shadow: 0 0 0 .1em inset var(--c); 
-    --_g: linear-gradient(var(--c) 0 0) no-repeat;
-    background: 
-      var(--_g) calc(var(--_p,0%) - 100%) 0%,
-      var(--_g) calc(200% - var(--_p,0%)) 0%,
-      var(--_g) calc(var(--_p,0%) - 100%) 100%,
-      var(--_g) calc(200% - var(--_p,0%)) 100%;
-    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
-    outline-offset: .1em;
-    transition: background-size .4s, background-position 0s .4s;
-  }
+  box-shadow: 0 0 0 0.1em inset var(--c);
+  --_g: linear-gradient(var(--c) 0 0) no-repeat;
+  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p, 0%)) 0%,
+    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+  outline-offset: 0.1em;
+  transition: background-size 0.4s, background-position 0s 0.4s;
+}
 
 .btn-01:hover {
-    --_p: 100%;
-    transition: background-position .4s, background-size 0s;
-  }
+  --_p: 100%;
+  transition: background-position 0.4s, background-size 0s;
+}
 
 .btn-01:active {
-    box-shadow: 0 0 9e9q inset #0009; 
-    background-color: var(--c);
-    color: #fff;
+  box-shadow: 0 0 9e9Q inset #0009;
+  background-color: var(--c);
+  color: #fff;
 }
 
 .btn-01:nth-child(1) {
-    margin-right: 5px;
+  margin-right: 5px;
 }

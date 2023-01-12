@@ -7,12 +7,12 @@ function Vehicule() {
       <div className="container">
         <Link to="reserver/">
           <button type="button" className="btn-01">
-            Book a car
+            Booking
           </button>
         </Link>
         <Link to="/RentCreator">
           <button type="button" className="btn-01">
-            Hide out your car
+            Hide out car
           </button>
         </Link>
       </div>

@@ -1,3 +1,4 @@
 .logo {
-  filter: drop-shadow(0 0 0.35rem white);
+  display: flex;
+  justify-content: center;
 }
