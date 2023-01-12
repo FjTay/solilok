@@ -2,40 +2,89 @@
   padding: 15vh;
 }
 
-@keyframes bg-slider {
-  0% {
-    background-image: url("/public/image/background/VehicleBG1.jpg");
-  }
-  25% {
-    background-image: url("/public/image/background/VehicleBG8.jpg");
-  }
-  50% {
-    background-image: url("/public/image/background/VehicleBG3.jpg");
-  }
-  75% {
-    background-image: url("/public/image/background/VehicleBG7.jpg");
-  }
-  100% {
-    background-image: url("/public/image/background/VehicleBG2.jpg");
-  }
+.nav-btn {
+  position: relative;
 }
 
-@media (min-width: 1250px) {
-  @keyframes bg-slider {
-    0% {
-      background-image: url("/public/image/background/VehicleBG1big.jpg");
-    }
-    25% {
-      background-image: url("/public/image/background/VehicleBG2big.jpg");
-    }
-    50% {
-      background-image: url("/public/image/background/VehicleBG3big.jpg");
-    }
-    75% {
-      background-image: url("/public/image/background/VehicleBG4big.jpg");
-    }
-    100% {
-      background-image: url("/public/image/background/VehicleBG5big.jpg");
-    }
+.more-button {
+  background-color: #5c67ff;
+  box-shadow: 0px 0px 0px 4px rgba(92, 103, 255, 0.3);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+.more-button:hover,
+.more-button:focus {
+  box-shadow: 0px 0px 0px 8px rgba(92, 103, 255, 0.3);
+  background-color: #4854ff;
+}
+
+.more-button {
+  --button-color: #ececec;
+}
+
+.more-button[active="closed"] :is(.top, .bottom) {
+  animation: to-open-icon 1s forwards;
+}
+
+.more-button.active :is(.top, .bottom) {
+  animation: to-close-icon 1s forwards;
+}
+.more-button .hamburger {
+  transition: rotate 800ms 100ms;
+}
+.more-button.active .hamburger {
+  rotate: 1turn;
+}
+
+.more-button .line.top {
+  --rotation: -45deg;
+  transform-origin: 65px 45px;
+}
+.more-button .line.bottom {
+  --rotation: 45deg;
+  transform-origin: 60px 55px;
+}
+
+@keyframes to-close-icon {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  40% {
+    stroke-dashoffset: 79.9;
+  }
+  60% {
+    stroke-dashoffset: 79.9;
+    rotate: calc(var(--rotation));
+  }
+  100% {
+    stroke-dashoffset: 0;
+    rotate: var(--rotation);
+  }
+}
+@keyframes to-open-icon {
+  0% {
+    stroke-dashoffset: 0;
+    rotate: var(--rotation);
+  }
+  40% {
+    stroke-dashoffset: 79.9;
+    rotate: var(--rotation);
+  }
+  60% {
+    stroke-dashoffset: 79.9;
+  }
+  100% {
+    stroke-dashoffset: 0;
   }
 }
