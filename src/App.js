@@ -28,8 +28,8 @@ function App() {
 
   return (
     <div className="App">
-      <Link to="/makeOffer">make Offer</Link>
-      <Link to="/offers">see Offers</Link>
+      {/* <Link to="/makeOffer">make Offer</Link>
+      <Link to="/offers">see Offers</Link> */}
       <ConnexionContextProvider>
         <Routes>
           {/* ///////// */}

@@ -6,7 +6,7 @@ function Vehicule() {
   
   return (
 
-    <div className="car-sector">
+    <div className="box">
       <h1>Vehicule</h1>
       <div className="container">
               <Link to="reserver/" >
