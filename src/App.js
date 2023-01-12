@@ -19,6 +19,7 @@ import RentCreator from "./pages/RentCreator";
 import RentNeed from "./pages/rentNeed";
 import MakeOffer from "./MakeOffer";
 import Offers from "./Offers";
+import SearchBorn from "./pages/SearchBorn";
 
 function App() {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ function App() {
           <Route path="/RentNeed" element={<RentNeed />} />
           <Route path="RentCreator/business/" element={<SignInAsCompany />} />
           <Route path="RentCreator/user/" element={<SignIn />} />
+          <Route path="/SearchBorn" element={<SearchBorn />} />
         </Routes>
       </ConnexionContextProvider>
     </div>
