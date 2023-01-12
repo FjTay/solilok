@@ -16,17 +16,18 @@ import SignInAsCompany from "./SignInAsCompany";
 import MakeOffer from "./MakeOffer";
 import Offers from "./Offers";
 import Reserver from "./pages/Reserver";
-import MapView from "./pages/MapView";
+import MapView from "./pages/MapView.jsx";
+import Navbar from "./components/Layout/Navbar";
+
 import "./App.css";
 import AddCar from "./AddCar";
-import Navbar from "./components/Layout/Navbar";
 
 function App() {
   const navigate = useNavigate();
 
   return (
     <div className="App">
-    <Navbar />
+      <Navbar />
       <ConnexionContextProvider>
         <Routes>
           {/* ///////// */}

@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import Logo from "./Logo";
+// import ConnexionContext from "../../contexts/connexionContext";
 
 import "./Navbar.css";
 
@@ -24,6 +25,8 @@ function Navbar() {
           aria-label="Menu Button"
           onClick={handleClick}
         >
+          {active ? <PopUp closePopUp={() => setActive(false)} /> : null}
+
           <svg
             stroke="var(--button-color)"
             className="hamburger"
