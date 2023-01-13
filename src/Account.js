@@ -7,6 +7,8 @@ import FormFields from "./connexionHelpers/formFields";
 import FormTextInputList from "./FormTextInputList";
 import FormHelpers from "./connexionHelpers/formHelpers";
 import Navbar from "./components/Layout/Navbar";
+import SignIn from "./SignIn";
+import Connexion from "./Connexion";
 
 import "./Account.css";
 
@@ -77,14 +79,20 @@ function Account() {
         </>
       ) : !params["*"] ? (
         <>
-          <h3>Log in</h3>
-          <Link to="connexion">
-            <button type="button">Connexion</button>
-          </Link>
-          <h3>Not yet registered ?</h3>
-          <Link to="signIn">
-            <button type="button">Sign in</button>
-          </Link>
+          <div className="container-1">
+            <h3>Log in</h3>
+            <Link to="account/connexion">
+              <button type="button" className="btn-01">
+                Connexion
+              </button>
+            </Link>
+            <h3>Not yet registered ?</h3>
+            <Link to="RentCreator/user/">
+              <button type="button" className="btn-01">
+                Sign in
+              </button>
+            </Link>
+          </div>
         </>
       ) : (
         ""
