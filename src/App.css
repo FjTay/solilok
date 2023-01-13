@@ -40,6 +40,10 @@ body {
   text-align: center;
 }
 
+select {
+  width: 40vw;
+}
+
 /* ///////////// FIN DES CLASSES DE FRANCOIS /////////// */
 
 @keyframes bg-slider {

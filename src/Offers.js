@@ -3,9 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import { doc, getDoc, deleteDoc, arrayRemove, arrayUnion, setDoc, addDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore";
 import ConnexionContext from "./contexts/connexionContext";
 import { db } from "./firebase-config";
+import Offer from "./Offer";
 
 const Offers = () => {
-    const { userInfo, _ } = useContext(ConnexionContext);
+    const { userInfo, setUserInfo } = useContext(ConnexionContext);
     const [offers, setoffers] = useState([]);
     const [date, setDate] = useState({start: false, end: false , today : false})
   
@@ -17,12 +18,16 @@ const Offers = () => {
         })
         setoffers(updatedOffers)
     };
-
-    const deleteOffer = async (offerID) => {
+    
+    const deleteOffer = async (Offer) => {
+        console.log(Offer)
         const userRef = doc(db, "users", userInfo.auth.currentUser.uid);
-        await deleteDoc(doc(db, "offers", offerID)).then(res => setoffers(offers.filter(offer => offer.offer_id !== offerID)))
+        setUserInfo({...userInfo, currentOffers
+            : userInfo.currentOffers.filter(offer => offer.offer_ID !== Offer.offer_ID)
+        })
+        await deleteDoc(doc(db, "offers", Offer.offer_ID)).then(res => setoffers(offers.filter(offer => offer.offer_id !== Offer.offer_ID)))
         await updateDoc(userRef, {
-            offers: arrayRemove(offerID)
+            offers: arrayRemove(Offer.offer_ID)
         });
     }
   
@@ -54,13 +59,12 @@ const Offers = () => {
                 <>
                 <div>Offers</div>
                 {offers.filter(offer => Date.parse(date.start) <= Date.parse(offer.start) && Date.parse(date.end) >= Date.parse(offer.end)
-                ).map(offer =>
-                    <div onClick={() => console.log(offer)}>
-                        <div>{offer.car.model}</div>
-                        {offer.user_id === userInfo.auth.currentUser.uid && <div onClick={() => deleteOffer(offer.offer_id)}>delete offer</div>}
-                    </div>
+                ).map(offer =>{console.log("dddd");
+                     return <Offer deleteOffer={deleteOffer} offer={offer} />
+                     }
+                        
                 )}
-                </> : <div>Please set start date before end date :) </div>
+                </> : <div>Please set start date before end date : </div>
                 }
             </>
         }
@@ -85,3 +89,7 @@ const Offers = () => {
 }
 
 export default Offers
+/*
+{/* <div>{offer.car.model}</div>
+                        {offer.user_id === userInfo.auth.currentUser.uid && <div onClick={() => deleteOffer(offer.offer_id)}>delete offer</div>}
+                    </Offer> */

@@ -6,10 +6,9 @@ import { doc, getDoc, deleteDoc, arrayRemove, arrayUnion, setDoc, addDoc, getDoc
 import ConnexionContext from "../contexts/connexionContext";
 import { db } from "../firebase-config";
 import Offer from "../Offer";
-import Navbar from "../components/Layout/Navbar";
 
 function Reserver() {
-    const { userInfo, _ } = useContext(ConnexionContext);
+    const { userInfo, setUserInfo } = useContext(ConnexionContext);
     const [offers, setoffers] = useState([]);
     const [date, setDate] = useState({start: false, end: false , today : false})
   
@@ -22,9 +21,15 @@ function Reserver() {
         setoffers(updatedOffers)
     };
 
-    const deleteOffer = async (offerID) => {
+    const deleteOffer = async (offerID, dynID) => {
+        console.log(offerID)
+        console.log(dynID)
         const userRef = doc(db, "users", userInfo.auth.currentUser.uid);
-        await deleteDoc(doc(db, "offers", offerID)).then(res => setoffers(offers.filter(offer => offer.offer_id !== offerID)))
+        await deleteDoc(doc(db, "offers", offerID)).then(res => {
+            setoffers(offers.filter(offer => offer.offer_ID !== dynID))
+            setUserInfo({...userInfo, currentOffers : userInfo.currentOffers.filter(offer => offer.offer_ID !== dynID)
+})
+        })
         await updateDoc(userRef, {
             offers: arrayRemove(offerID)
         });
@@ -42,11 +47,13 @@ function Reserver() {
     }, []);
 
     const checkDates = () => {
-        return Date.parse(date.start) < Date.parse(date.end)
+        return Date.parse(date.start) <= Date.parse(date.end)
     }
+
 
   return (
     <div class="blanco">
+    <img src="http://localhost:5000/uploads/8458b14c-433d-4033-93c7-ca0f0d39b23a.png"></img>
         <h1>Search for a rental car</h1>
         <form action="">
             <div class="fechas">
@@ -78,19 +85,19 @@ function Reserver() {
             <label>The driver's age between 30 and 65?  <i class="fa-solid fa-circle-info"></i></label>
         </div>
     </form>
-    {offers.length && 
+    {offers.length ? 
             <>
                 {checkDates() ? 
                 <>
                 <label>Offers</label>
-                {offers.filter(offer => Date.parse(date.start) <= Date.parse(offer.start) && Date.parse(date.end) >= Date.parse(offer.end)
+                {offers.filter(offer => (Date.parse(date.start) >= Date.parse(offer.start)) && (Date.parse(date.end) <= Date.parse(offer.end))
                     ).map(offer =>
-                        <Offer offer={offer} deleteOffer={deleteOffer}></Offer>
+                        <Offer key={offer.id} offer={offer} deleteOffer={deleteOffer}></Offer>
                     )
                 }
-                </> : <div>Please set start date before end date :) </div>
+                </> : <div>Please set start date before end date </div>
                 }
-            </>
+            </> : ""
     }
     </div>
   )
