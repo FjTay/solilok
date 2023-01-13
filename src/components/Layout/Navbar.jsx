@@ -1,5 +1,5 @@
-import { useState, useRef, useContext } from "react";
-import PopUp from "./Login/PopUp";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router";
 import Logo from "./Logo";
 // import ConnexionContext from "../../contexts/connexionContext";
 
@@ -8,8 +8,7 @@ import "./Navbar.css";
 function Navbar() {
   const ref = useRef();
   const [active, setActive] = useState(false);
-  // const { userInfo } = useContext(ConnexionContext);
-  // console.log(userInfo);
+  const navigate = useNavigate()
 
   const handleClick = (e) => {
     setActive(!active);
@@ -18,7 +17,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="nav-bar">
+    <nav className="nav-bar" >
       <div className="nav-btn">
         <button
           ref={ref}

@@ -24,6 +24,8 @@ export function ConnexionContextProvider({ children }) {
       }
     }, [userInfo])
 
+    useEffect(() => console.log(userInfo), [userInfo])
+
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <ConnexionContext.Provider value={{ userInfo, setUserInfo }}>

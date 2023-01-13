@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import ConnexionContext from "./contexts/connexionContext";
 import { db } from "./firebase-config";
+import { v4 as uuidv4 } from 'uuid';
 
 const MakeOffer = () => {
     const { userInfo, setUserInfo } = useContext(ConnexionContext);
@@ -23,16 +24,18 @@ const MakeOffer = () => {
     console.log(userInfo)
   
     const getCars = async () => {
+
         const carsQuery = collection(db, "cars")
         const cars = query(carsQuery, where("user_id", "==", userInfo.auth.currentUser.uid))
         const querySnapshot = await getDocs(cars);
         const filteredCars = []
-        querySnapshot.forEach(doc => filteredCars.push(doc.data()))
+        querySnapshot.forEach(doc => {
+            filteredCars.push(doc.data())})
         setCars(filteredCars)
     };
 
     useEffect(() => {
-        if (userInfo.auth.currentUser) getCars()
+        if (userInfo.auth.currentUser) {getCars()}
         const date = new Date();
         let day = date.getDate();
         let month = date.getMonth() + 1;
@@ -52,6 +55,7 @@ const MakeOffer = () => {
             city: userInfo.info.city,
             country : userInfo.info.country,
             postcode : userInfo.info.postcode,
+            offer_ID : uuidv4()
         }
         await addDoc(collection(db, "offers"), newOffer).then(async addedDoc => {
             await updateDoc(
@@ -60,43 +64,44 @@ const MakeOffer = () => {
                   offers: arrayUnion(addedDoc.id),
                 },
                 { merge: true }
-            ).then(res => setUserInfo({...userInfo, currentOffers : [...userInfo.currentOffers, newOffer]}))
+            )
+            .then(res => setUserInfo({...userInfo, currentOffers : [...userInfo.currentOffers, newOffer]}))
         })
     };
 
     const checkAvailability = () => {
-        if(!userInfo.currentOffers.length) {
-            console.log("je suis là")
+        if(!userInfo.currentOffers?.length) {
+            console.log(userInfo.currentOffers)
             return true
         }
         if(new Date(date.start).getTime() <= new Date(date.end).getTime()) {
-            if(currentCar?.length && userInfo.currentOffers?.length) {
+            if (!userInfo.currentOffers.filter(offer => offer.car.carID === currentCar[0].carID).length) {
+                return true
+            }
+            else if(currentCar?.length && userInfo.currentOffers?.length) {
                 const before = (
                     new Date(date.start).getTime() && 
                     new Date(date.end).getTime()) < 
                     new Date(userInfo.currentOffers
-                        .find(offer => offer.car.carID === currentCar[0].carID).start).getTime()
+                        .find(offer => offer.car.carID === currentCar[0].carID)?.start).getTime()
                 const after = (
                     new Date(date.start).getTime() && 
                     new Date(date.end).getTime()) > 
                     new Date(userInfo.currentOffers
-                        .find(offer => offer.car.carID === currentCar[0].carID).end).getTime()
-                return (before || after)
+                        .find(offer => offer.car.carID === currentCar[0].carID)?.end).getTime()
+                        console.log(userInfo.currentOffers
+                            .find(offer => offer.car.carID === currentCar[0].carID)?.end)
+                return before ? before : after
             } else return false
         } else return false
     }
-
-    useEffect(() => {
-        currentCar.length && console.log(userInfo.currentOffers.find(offer => offer.car.carID === currentCar[0].carID))
-    }, [currentCar])
-    
-    
+      
     return (
         <>
         {userInfo.auth.currentUser ? 
-        <>
-            <div className="page page-comments">
-                {cars?.length && 
+        <div className="blanco">
+            <div className="makeOffer">
+                {cars?.length ?
                     <>
                     <div>My Cars</div>
                         {cars.map(car => 
@@ -104,11 +109,13 @@ const MakeOffer = () => {
                             setCurrentCar(cars.filter(subcar => subcar.carID === car.carID))
                         }}>{car.model} - {car.brand}</div>
                     )}
-                    </>
+                    </> : ""
                 }
             </div>
             <div>
-                {currentCar.length ? `You have chosen : ${currentCar[0].model} - ${currentCar[0].brand}` :""}
+                {currentCar.length ? 
+                <>
+                <div>You have chosen : </div><div>{currentCar[0].model} - {currentCar[0].brand}</div> </>:""}
             </div>
             <label for="start">Start date:</label>
             <input type="date" id="start" name="trip-start"
@@ -130,7 +137,7 @@ const MakeOffer = () => {
             </input>
             {currentCar.length ? checkAvailability() ? "Available for this date!" : "Not available for these dates" : ""}
             <button disabled={!currentCar.length ? true : !checkAvailability()? true : false} onClick={() => pushOffer()}>POST MY OFFER</button>
-            </>
+            </div>
        : 
        <>
       <div>YOU NEED TO SIGN IN TO MAKE AN OFFER</div>
