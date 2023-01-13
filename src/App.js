@@ -19,6 +19,7 @@ import Reserver from "./pages/Reserver";
 import MapView from "./pages/MapView.jsx";
 import Navbar from "./components/Layout/Navbar";
 import ListView from "./pages/ListView";
+import Navbar from "./components/Layout/Navbar";
 
 import "./App.css";
 import AddCar from "./AddCar";
@@ -47,8 +48,6 @@ function App() {
           <Route path="makeOffer/" element={<MakeOffer />} />
           <Route path="account/addCar/" element={<AddCar />} />
           <Route path="offers/" element={<Offers />} />
-          <Route path="/RentCreator" element={<RentCreator />} />
-          <Route path="/RentNeed" element={<RentNeed />} />
           <Route path="RentCreator/business/" element={<SignInAsCompany />} />
           <Route path="RentCreator/user/" element={<SignIn />} />
           <Route path="/lists" element={<ListView />} />

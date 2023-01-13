@@ -1,14 +1,45 @@
-
 import "./Reserver.css";
-import React, { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
+import usePlacesAutocomplete, {
+    getGeocode,
+    getLatLng,
+  } from "use-places-autocomplete";
+  import {
+    Combobox,
+    ComboboxInput,
+    ComboboxPopover,
+    ComboboxList,
+    ComboboxOption,
+  } from "@reach/combobox";
 import { useParams, Link } from "react-router-dom";
 import { doc, getDoc, deleteDoc, arrayRemove, arrayUnion, setDoc, addDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore";
 import ConnexionContext from "../contexts/connexionContext";
 import { db } from "../firebase-config";
 import Offer from "../Offer";
+import MapView from "./MapView";
 
 function Reserver() {
-    const { userInfo, setUserInfo } = useContext(ConnexionContext);
+    const [address, setAddress] = useState("");
+    console.log(address);
+
+    const {
+        ready,
+        value,
+        setValue,
+        suggestions: { status, data },
+        clearSuggestions,
+      } = usePlacesAutocomplete();
+    
+    const handleSelect = async (val) => {
+        setValue(val, false);
+        clearSuggestions();
+    
+        const results = await getGeocode({ address: val });
+        const { lat, lng } = await getLatLng(results[0]);
+        setAddress({ lat, lng });
+    };
+
+    const { userInfo, _ } = useContext(ConnexionContext);
     const [offers, setoffers] = useState([]);
     const [date, setDate] = useState({start: false, end: false , today : false})
   
@@ -21,15 +52,9 @@ function Reserver() {
         setoffers(updatedOffers)
     };
 
-    const deleteOffer = async (offerID, dynID) => {
-        console.log(offerID)
-        console.log(dynID)
+    const deleteOffer = async (offerID) => {
         const userRef = doc(db, "users", userInfo.auth.currentUser.uid);
-        await deleteDoc(doc(db, "offers", offerID)).then(res => {
-            setoffers(offers.filter(offer => offer.offer_ID !== dynID))
-            setUserInfo({...userInfo, currentOffers : userInfo.currentOffers.filter(offer => offer.offer_ID !== dynID)
-})
-        })
+        await deleteDoc(doc(db, "offers", offerID)).then(res => setoffers(offers.filter(offer => offer.offer_id !== offerID)))
         await updateDoc(userRef, {
             offers: arrayRemove(offerID)
         });
@@ -47,14 +72,28 @@ function Reserver() {
     }, []);
 
     const checkDates = () => {
-        return Date.parse(date.start) <= Date.parse(date.end)
-    }
-
+        return Date.parse(date.start) < Date.parse(date.end)
+    };
 
   return (
     <div class="blanco">
-    <img src="http://localhost:5000/uploads/8458b14c-433d-4033-93c7-ca0f0d39b23a.png"></img>
-        <h1>Search for a rental car</h1>
+        <Combobox onSelect={handleSelect} className="bar-search">
+      <ComboboxInput
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        disabled={!ready}
+        className="combobox-input"
+        placeholder="Search address"
+      />
+      <ComboboxPopover>
+        <ComboboxList className="address-list">
+          {status === "OK" &&
+            data.map(({ place_id, description }) => (
+              <ComboboxOption key={place_id} value={description} />
+            ))}
+        </ComboboxList>
+      </ComboboxPopover>
+    </Combobox>
         <form action="">
             <div class="fechas">
                 <div class="fecha">
@@ -75,7 +114,7 @@ function Reserver() {
                         max="2025-01-01"
                         value={date.end}
                         onChange={(e) => {
-                            setDate({...date, end: e.target.value})
+                        setDate({...date, end: e.target.value})
                         }}
                     ></input>
                 </div>
@@ -84,20 +123,25 @@ function Reserver() {
             <input type="checkbox" />
             <label>The driver's age between 30 and 65?  <i class="fa-solid fa-circle-info"></i></label>
         </div>
+        <Link to="/MapView">
+            <button className="btn-01">
+                    View on Map
+            </button>
+        </Link>
     </form>
-    {offers.length ? 
+    {offers.length && 
             <>
                 {checkDates() ? 
                 <>
                 <label>Offers</label>
-                {offers.filter(offer => (Date.parse(date.start) >= Date.parse(offer.start)) && (Date.parse(date.end) <= Date.parse(offer.end))
+                {offers.filter(offer => Date.parse(date.start) <= Date.parse(offer.start) && Date.parse(date.end) >= Date.parse(offer.end)
                     ).map(offer =>
-                        <Offer key={offer.id} offer={offer} deleteOffer={deleteOffer}></Offer>
+                        <Offer offer={offer} deleteOffer={deleteOffer}></Offer>
                     )
                 }
-                </> : <div>Please set start date before end date </div>
+                </> : <div>Please set start date before end date :) </div>
                 }
-            </> : ""
+            </>
     }
     </div>
   )
