@@ -20,7 +20,7 @@ body {
   transition-delay: 0.4s;
   object-fit: cover;
   background-attachment: fixed;
-  color: red;
+  color: black;
 }
 
 /* ///////////// CLASSES DE FRANCOIS /////////// */
@@ -36,7 +36,7 @@ body {
   border-radius: 10px;
 }
 
-.makeOffer{
+.makeOffer {
   text-align: center;
 }
 
