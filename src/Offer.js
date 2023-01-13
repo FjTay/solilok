@@ -7,11 +7,11 @@ const Offer = ({offer, deleteOffer}) => {
     const navigate = useNavigate()
 
     return (
-        <div onClick={() => console.log(offer)} className="offer">
+        <div className="offer">
             <h3>{offer.car.brand} - {offer.car.model}</h3>
             <div>available </div>
             <div>{offer.start} - {offer.end}</div>
-            {offer.user_id === userInfo.auth.currentUser.uid && <div onClick={() => deleteOffer(offer.offer_id)}>delete my offer</div>}
+            {offer.user_id === userInfo.auth.currentUser.uid && <div onClick={() => deleteOffer(offer.offer_id, offer.offer_ID)}>delete my offer</div>}
         </div>
     )
 }
