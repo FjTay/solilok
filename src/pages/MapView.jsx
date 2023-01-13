@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import "./MapView.css";
 
-export default function SearchBorn() {
+export default function MapView() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyC8zmtYopBNQqqQy0MGknJ3d9MowzhYp4g",
   });
@@ -11,7 +11,8 @@ export default function SearchBorn() {
   return <Map />;
 }
 
-function Map() {
+function Map({ myAdd }) {
+  console.log(myAdd)
   return (
     <GoogleMap
       zoom={10}
